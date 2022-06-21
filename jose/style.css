@@ -1,0 +1,53 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+    background-color: lightgray;
+}
+
+section.panel {
+    min-height: 100vh;
+    border: 4 px solid white;
+    display: grid;
+    place-content: center;
+    background-image: url(imagenes/pngtree-film-and-television-festival-retro-wind-camera-poster-image_218869.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1 {border-style: dotted;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+}
+
+
+
+p#cinefilo {
+   color: blueviolet;
+}
+
+section.panel.start {
+    background-color: lightgrey;
+}
+
+section.panel.central {
+    background-color: green;
+}
+
+section.panel.final {
+    background-color: black;
+    color: white;
+}
+
+
+
+
+
+section.panel.hidden{
+    display: none;
+}

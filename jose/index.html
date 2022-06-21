@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PANTALLAS</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header><h1>CINEMA QUIZ</h1></header>
+    <section class="panel start hidden">
+      <p id="cinefilo">¿Eres todo un cinéfilo?, !Demuéstralo!</p>
+      <form action="/text.js" method="GET">
+          <label for="titulo">Nombre</label>
+          <input type="text" name="título" id="titulo" autofocus required />
+          <legend>Atrévete con nuestro juego de preguntas de cine</legend></h2> 
+      
+          <p>¡A por ellos!
+          <button type="submit">Comienza tu partida</p>
+
+    </section>
+    <section class="panel center hidden">
+      <p></p>
+      <P>JUEGO</P>
+      <div class="pregresp">
+          <div class="pregunta">1. ¿En que año se estrenó Cuidadano Kane?<br />
+          </div>
+          <div class="respuestas">
+            <input type="radio" name="preg1" value="1" /> 1939<br />
+            <input type="radio" name="preg1" value="2" /> 2008<br />
+            <input type="radio" name="pre g1" value="3" /> 1941<br />
+              <input type="radio" name="preg1" value="4" /> 1962<br />
+              <button inputmode="submit">Envía tu respuesta</button>
+
+    </section>
+    <section class="panel end hidden">
+   
+      <p>RESULTADO FINAL</p>
+    <span style="border-image: initial; border: 1px solid blue;">CORRECTO O INCORRRECTO</span>
+
+  <button>SEGUIR MAS ADELANTE</button><button>SIGUEINTE PREGUNTA</button>
+    </section>
+    <script src="./script_dos.js"></script>
+  </body>
+</html>
+
