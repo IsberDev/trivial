@@ -8,8 +8,44 @@
 }
 
 body {
+  min-height: 100vh;
   background-color: lightgray;
 }
-section {
-  max-height: 100vh;
+
+section.panel {
+  min-height: 100vh;
+  border: 4 px solid white;
+  display: grid;
+  place-content: center;
+  background-image: url(/img/fondo-trivial.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h1 {
+  border-style: dotted;
+  text-align: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-weight: bold;
+}
+
+p#cinefilo {
+  color: blueviolet;
+}
+
+section.panel.start {
+  background-color: lightgrey;
+}
+
+section.panel.central {
+  background-color: green;
+}
+
+section.panel.final {
+  background-color: black;
+  color: white;
+}
+
+section.panel.hidden {
+  display: none;
 }
