@@ -1,1 +1,15 @@
- 
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.error {
+}
+
+body {
+  background-color: lightgray;
+}
+section {
+  max-height: 100vh;
+}
