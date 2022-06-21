@@ -13,11 +13,11 @@ body {
 }
 
 section.panel {
+  background-image: url(/img/fondo-trivial.jpg);
   min-height: 100vh;
   border: 4 px solid white;
   display: grid;
   place-content: center;
-  background-image: url(/img/fondo-trivial.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -48,4 +48,9 @@ section.panel.final {
 
 section.panel.hidden {
   display: none;
+}
+
+footer p {
+  text-align: center;
+  text-decoration: dashed;
 }
