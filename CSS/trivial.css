@@ -12,7 +12,8 @@ body {
   background-color: lightgray;
 }
 
-section.panel {
+article {
+  text-align: center;
   background-image: url(/img/fondo-trivial.jpg);
   min-height: 100vh;
   border: 4 px solid white;
@@ -35,13 +36,16 @@ p#cinefilo {
 
 section.panel.start {
   background-color: lightgrey;
+  margin-left: 20vh;
 }
 
 section.panel.central {
   background-color: green;
+  margin-left: 20vh;
 }
 
 section.panel.final {
+  margin-left: 20vh;
   background-color: black;
   color: white;
 }
@@ -53,4 +57,10 @@ section.panel.hidden {
 footer p {
   text-align: center;
   text-decoration: dashed;
+}
+.right {
+  background: palegreen;
+}
+.wrong {
+  background: salmon;
 }

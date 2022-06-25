@@ -16,6 +16,7 @@
 </head>
 <body>
     <header><h1>CINEMA QUIZ</h1></header>
+    <article>
     <section class="panel start hidden">
       <p id="cinefilo">¿Eres todo un cinéfilo?, !Demuéstralo!</p>
       <form name="User">
@@ -31,28 +32,30 @@
     </section>
     <section class="panel center hidden">
       <p></p>
-      <P>JUEGO</P>
+      <P>Empieza El Juego</P>
       <div class="pregresp">
-          <div class="pregunta">1. ¿En que año se estrenó Cuidadano Kane?<br />
+          <div class="pregunta"><br />
           </div>
           <div class="respuestas">
-            <input type="radio" name="preg1" value="1" /> 1939<br />
+            <input type="radio" name="preg1" value="1" /> 1939<br /> 
             <input type="radio" name="preg1" value="2" /> 2008<br />
             <input type="radio" name="pre g1" value="3" /> 1941<br />
-              <input type="radio" name="preg1" value="4" /> 1962<br />
-              <button inputmode="submit">Envía tu respuesta</button>
+            <input type="radio" name="preg1" value="4" /> 1962<br />
+            <button inputmode="submit">Envía tu respuesta</button>
 
     </section>
     <section class="panel end hidden">
-   
+        
       <p>RESULTADO FINAL</p>
-    <span style="border-image: initial; border: 1px solid blue;">CORRECTO O INCORRRECTO</span>
+    <span style="border-image: initial; border: 1px solid blue;">CORRECTO O INCORRRECTO</span><br>
 
   <button>SEGUIR MAS ADELANTE</button><button>SIGUEINTE PREGUNTA</button>
     </section>
-    <section>
-        <p class="error"></p>
+    <section class="panel error hidden">
+        <p ></p>
+        <Button> Volver a inicio</Button>
     </section>
+    </article>
     <footer>
         <p>Diseñado por Ismael García Bermejo y Jose Maria López Fernández</p>
     </footer>
