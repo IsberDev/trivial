@@ -19,9 +19,9 @@
     <article>
     <section class="panel start hidden">
       <p id="cinefilo">¿Eres todo un cinéfilo?, !Demuéstralo!</p>
-      <form name="User">
+      <form name="usuario">
           <label for="User">Nombre</label>
-          <input type="text" name="User" id="User" autofocus required />
+          <input type="text" name="user" id="user" autofocus required />
           <legend>Atrévete con nuestro juego de 50 preguntas de cine</legend></h2> 
       
           <p>¡A por ellos!
@@ -34,6 +34,7 @@
       <p></p>
       <P>Empieza El Juego</P>
       <div class="pregresp">
+            <div class="divtime"></div>
           <div class="pregunta"><br />
           </div>
           <div class="respuestas">
@@ -47,9 +48,11 @@
     <section class="panel end hidden">
         
       <p>RESULTADO FINAL</p>
-    <span style="border-image: initial; border: 1px solid blue;">CORRECTO O INCORRRECTO</span><br>
+    <span class= aciertos style="border-image: initial; border: 1px solid blue;">CORRECTO O INCORRRECTO</span><br>
 
-  <button>SEGUIR MAS ADELANTE</button><button>SIGUEINTE PREGUNTA</button>
+    <button>SEGUIR MAS ADELANTE</button><button class="nextpre">SIGUEINTE PREGUNTA</button>
+    <p><span class="verdad">0</span><span class="mentira">0</span></p>
+
     </section>
     <section class="panel error hidden">
         <p ></p>

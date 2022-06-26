@@ -5,6 +5,7 @@
 }
 
 .error {
+  background: gray;
 }
 
 body {
@@ -16,7 +17,7 @@ article {
   text-align: center;
   background-image: url(/img/fondo-trivial.jpg);
   min-height: 100vh;
-  border: 4 px solid white;
+  /* border: 4 px solid white; */
   display: grid;
   place-content: center;
   background-repeat: no-repeat;
@@ -63,4 +64,18 @@ footer p {
 }
 .wrong {
   background: salmon;
+}
+.verdad {
+  border: 2px solid black;
+  background: palegreen;
+  font-size: 24px;
+}
+.mentira {
+  border: 2px solid black;
+  background: salmon;
+  font-size: 24px;
+}
+.time {
+  font-size: 32px;
+  color: red;
 }

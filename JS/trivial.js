@@ -22,12 +22,19 @@ async function mainjson() {
 mainjson();
 
 //--------------------------------------------------------------------------------------------------llamada a json y pintar preguntas y respuestas
-//let count = data++;
+//decraraciones
 let rightanswers = data.correct;
+let counterp = 0;
+let rightans = 0;
+let wrongans = 0;
+let time = 20;
+let timeinterval;
 
 const printhtmlpregunta = (i) => {
+  counterp++;
   const q = data[i];
   let a = q.answers;
+  a = a.sort((a, b) => Math.floor(Math.random() * 3) - 1);
   //mirar
   const htmlanswersarray = a.map(
     (currentA) =>
@@ -51,29 +58,49 @@ const printhtmlpregunta = (i) => {
   let Htmlrespuestascode = `<p>${htmlanswers}</p>`;
   document.querySelector("div.respuestas").innerHTML = Htmlrespuestascode;
 };
-//avaluador de respuestas y comprobacion
-const evaluarans = (answer) => {
+//tiempo para respuesta
+time = 20;
+let cretime = `<p class=time></p>`;
+document.querySelector(".divtime").innerHTML = cretime;
+document.querySelector(".time").innerHTML = time;
+clearInterval(timeinterval);
+timeinterval = setInterval(() => {
+  time--;
+  if (time == 0) {
+    alert("Se acabo el tiempo");
+    clearInterval(timeinterval);
+  } else {
+    document.querySelector(".time").innerHTML = time;
+  }
+}, 1000);
+//evaluador de respuestas y comprobacion--------------------------
+
+const evaluarans = (answers) => {
+  const padrepre = document.querySelectorAll("p.answer");
   document
     .querySelectorAll(".answer")
-    .forEach((a = a.classList.remove("right", "wrong")));
-  const parentP = obj.parentNode;
+    .forEach((a) => a.classList.remove("right", "wrong"));
 
-  if (answers == rightanswers) {
-    const text = end.querySelector("p span");
+  if ((answers = rightanswers)) {
+    const text = end.querySelector(".aciertos");
     text.textContent = "Acertaste";
-
-    parentP.classList.add("right");
+    padrepre.classList.add("right");
+    rightans++;
+    document.querySelector.add(".verdad").innerHTML = rightans;
   } else answers !== rightanswers;
-  const text = end.querySelector("p span");
+  const text = end.querySelector(".aciertos");
   text.textContent = "Fallaste";
-  parentP.classList.add("wrong");
+
+  padrepre.classList.add("wrong");
+  wrongans++;
+  document.querySelector.add(".mentira").innerHTML = wrongans;
 };
 
-printhtmlpregunta(0);
+printhtmlpregunta(counterp);
 
 //------------------------------------------------------------------------
 
-const form = document.forms.User;
+const form = document.forms.usuario;
 
 form.addEventListener("submit", (e) => {
   // Prevenimos que se envie el formulario al pulsar el botón.
@@ -145,15 +172,19 @@ const start = document.querySelector(".start");
 const center = document.querySelector(".center");
 const end = document.querySelector(".end");
 const error = document.querySelector(".error");
-//const evaluarb = center.querySelectorAll("button.evaluar");
-// const botoneva = evaluarb.addEventListener("click", () => {
-//   evaluarans();
-//   hideAllPanel();
-//   showEnd();
-// });
-// setTimeout(() => {
-//   botoneva;
-// }, 3000);
+const evaluarb = center.querySelectorAll(".evaluar");
+
+const botoneva = evaluarb[0].addEventListener("click", () => {});
+
+for (const evaluar of evaluarb) {
+  evaluar.addEventListener("click", () => {
+    evaluarans();
+    setTimeout(() => {
+      hideAllPanel();
+      showEnd();
+    }, 3000);
+  });
+}
 
 function showPanel(panel) {
   panel.classList.remove("hidden");
@@ -170,12 +201,17 @@ function showEnd() {
   showPanel(end);
   const text = end.querySelector("p");
   text.textContent = "¿Acertaste o Fallastes?";
+
   const endButton = end.querySelector("button");
   endButton.addEventListener("click", () => {
     hideAllPanel();
     main();
   });
 }
+const nextp = document.querySelector(".nextpre");
+nextp.addEventListener("click", () => {
+  printhtmlpregunta(counterp);
+});
 function showerror() {
   showPanel(error);
   const text = error.querySelector("p");
@@ -191,10 +227,10 @@ function showCenter() {
   const text = center.querySelector("p");
   text.textContent = "Este Es Tu Desafio";
   const centerButton = center.querySelector("button");
-  centerButton.addEventListener("click", () => {
-    hideAllPanel();
-    showEnd();
-  });
+  // centerButton.addEventListener("click", () => {
+  //   hideAllPanel();
+  //   showEnd();
+  // });
   setTimeout(() => {
     centerButton;
   }, 3000);
