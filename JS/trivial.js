@@ -23,18 +23,20 @@ mainjson();
 
 //--------------------------------------------------------------------------------------------------llamada a json y pintar preguntas y respuestas
 //decraraciones
-let rightanswers = data.correct;
+
 let counterp = 0;
+let rightanswers = data[counterp].correct;
 let rightans = 0;
 let wrongans = 0;
 let time = 20;
 let timeinterval;
-//tiempo limite para respuesta- ok
+
+//tiempo limite para respuesta creacion de nodo -ok
 
 let cretime = `<p class=time></p>`;
 document.querySelector(".divtime").innerHTML = cretime;
-document.querySelector(".time").innerHTML = time;
-clearInterval(timeinterval);
+const printime = (document.querySelector(".time").innerHTML = time);
+printime;
 
 // pintura en el html de respuestas y preguntas -ok
 const printhtmlpregunta = (i) => {
@@ -43,21 +45,12 @@ const printhtmlpregunta = (i) => {
   let a = q.answers;
   //cambiar de posicion todoas las respuestas randon en cada pregunta de forma aleatoria
   a = a.sort((a, b) => Math.floor(Math.random() * 3) - 1);
-  //mirar
+  //creacion de nodo de respuesta por map ok
   const htmlanswersarray = a.map(
     (currentA) =>
       `<p class=answer><button class=evaluar>X</button><span>${currentA}</span></p>`
   );
-  //prueva de codigos de diferentes llamadas al click desde html o desde cresacion de html con llamada integrada no funcina.
-  // const htmlanswersarray = a.map(
-  //    (currentA) => document.createElement(`<p class=ans><button id=evalu onclick="evaluateAnswer('${currentA}', this)">X</button> <span>${currentA}</span></p>)
-  //     `
-  //   //button.getElementById("evalu").addEventListener("click") =
-  // )
-  // const evaluateButton = center.respuestas.querySelectorall("button");
-  // evaluateButton.addEventListener("click", () => {
-  //   evaluateAnswers("${currentA}", this);
-  // });
+  // formato para quitar , separatoria
   const htmlanswers = htmlanswersarray.join(" ");
 
   //pintura en el HTML (ok)
@@ -65,11 +58,29 @@ const printhtmlpregunta = (i) => {
   document.querySelector("div.pregunta").innerHTML = Htmlpreguntacode;
   let Htmlrespuestascode = `<p>${htmlanswers}</p>`;
   document.querySelector("div.respuestas").innerHTML = Htmlrespuestascode;
+
+  //tiempo de decuento por pregunta alerta suma de un fallo y cambio de panel
+  let time = 20;
+  document.querySelector(".time").innerHTML = time;
+  clearInterval(timeinterval);
+  timeinterval = setInterval(() => {
+    time--;
+    if (time == 0) {
+      alert("Se acabo el tiempo");
+      clearInterval(timeinterval);
+      //escritura de contador fallo
+      wrongans++;
+      //cambio de paneles
+      hideAllPanel();
+      showEnd();
+      // colocar un fin de tiempo pregunta
+    } else {
+      document.querySelector(".time").innerHTML = time;
+    }
+  }, 1000);
 };
 
-///contador descuento de tiempo con alerta de fin de tiempo--- subida con contador negativo y siguiente pregunta
-
-//evaluador de respuestas y comprobacion--------------------------mirar no ok
+//evaluador de respuestas y comprobacion-------------------------------------------------------------------------------------------------------------------------------------------------------------mirar no ok
 
 const evaluarans = (answers) => {
   const padrepre = document.querySelectorAll("p.answer");
@@ -80,7 +91,7 @@ const evaluarans = (answers) => {
   if ((answers = rightanswers)) {
     const text = end.querySelector(".aciertos");
     text.textContent = "Acertaste";
-    //fallo de in not difine
+    //fallo de in not difine padrepre
     padrepre.classList.add("right");
     rightans++;
     document.querySelector.add(".verdad").innerHTML = rightans;
@@ -96,10 +107,8 @@ const evaluarans = (answers) => {
   const audioF = new Audio("/Sonido/incorrecto.mp3");
   audioF.play();
 };
-
-printhtmlpregunta(counterp);
-
-//------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------form para cojer datos y escribirlos en la base de datos si definir -- solo guardado nombre
 
 const form = document.forms.usuario;
 
@@ -174,8 +183,11 @@ const center = document.querySelector(".center");
 const end = document.querySelector(".end");
 const error = document.querySelector(".error");
 const evaluarb = center.querySelectorAll(".evaluar");
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------mirar no ok
 
-const botoneva = evaluarb[0].addEventListener("click", () => {});
+//botones de respues procedentes de preguntahtml para verificar respuesta mirara no ok
+
+// const botoneva = evaluarb.addEventListener("click", () => {});
 
 for (const evaluar of evaluarb) {
   evaluar.addEventListener("click", () => {
@@ -185,46 +197,41 @@ for (const evaluar of evaluarb) {
       hideAllPanel();
       showEnd();
     }, 3000);
-    clearInterval(timeinterval);
   });
 }
-
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// remover class hidden
 function showPanel(panel) {
   panel.classList.remove("hidden");
 }
-
+//añadir clase hidden
 function hideAllPanel() {
   start.classList.add("hidden");
   center.classList.add("hidden");
   end.classList.add("hidden");
   error.classList.add("hidden");
 }
-
+// boton de la ultima portada
 function showEnd() {
   showPanel(end);
   const text = end.querySelector("p");
   text.textContent = "¿Acertaste o Fallastes?";
 
-  const endButton = end.querySelector("button");
-  endButton.addEventListener("click", () => {
-    hideAllPanel();
-    main();
-  });
+  // const endButton = end.querySelector("button");
+  // endButton.addEventListener("click", () => {
+  //   hideAllPanel();
+  //   main();
+  // });
 }
+//boton de siguiente pregunta que da paso desde la ultima pantalla
 const nextp = document.querySelector(".nextpre");
 nextp.addEventListener("click", () => {
   printhtmlpregunta(counterp);
-
-  timeinterval = setInterval(() => {
-    time--;
-    if (time == 0) {
-      alert("Se acabo el tiempo");
-      clearInterval(timeinterval);
-    } else {
-      document.querySelector(".time").innerHTML = time;
-    }
-  }, 1000);
+  hideAllPanel();
+  showCenter();
 });
+
+//funcion de muestra de error en otro postal si no hay error en base de datos o json
 function showerror() {
   showPanel(error);
   const text = error.querySelector("p");
@@ -240,8 +247,9 @@ function showCenter() {
   const text = center.querySelector("p");
   text.textContent = "Este Es Tu Desafio";
   const centerButton = center.querySelector("button");
-  //llamada al click del boton centrar de las pregunta y no del panel con un retador de 3 segundos-mirar
-  centerButton.addEventListener("click", () => {
+  //pruaba inicial de paso de portal respuestas a final
+  // llamada al click del boton centrar de las pregunta y no del panel con un retador de 3 segundos-mirar
+  center.addEventListener("click", () => {
     hideAllPanel();
     showEnd();
   });
@@ -249,7 +257,7 @@ function showCenter() {
     centerButton;
   }, 3000);
 }
-
+//boton de inico OK
 function main() {
   showPanel(start);
   const startButton = start.querySelector("button");
@@ -257,22 +265,7 @@ function main() {
   startButton.addEventListener("click", () => {
     hideAllPanel();
     showCenter();
-    ///contador descuento de tiempo con alerta de fin de tiempo subida con contador negativo y siguiente pregunta
-
-    timeinterval = setInterval(() => {
-      time--;
-      if (time == 0) {
-        alert("Se acabo el tiempo");
-        clearInterval(timeinterval);
-        wrongans++;
-        counterp++;
-        // colocar un fin de tiempo pregunta
-      } else {
-        document.querySelector(".time").innerHTML = time;
-      }
-    }, 1000);
-
-    //llamada al contador pregunta para primera pregunta que no inicien contador en primera portal- mirar
+    printhtmlpregunta(counterp);
   });
 }
 
