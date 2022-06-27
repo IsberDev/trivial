@@ -29,18 +29,26 @@ let rightans = 0;
 let wrongans = 0;
 let time = 20;
 let timeinterval;
+//tiempo limite para respuesta- ok
 
+let cretime = `<p class=time></p>`;
+document.querySelector(".divtime").innerHTML = cretime;
+document.querySelector(".time").innerHTML = time;
+clearInterval(timeinterval);
+
+// pintura en el html de respuestas y preguntas -ok
 const printhtmlpregunta = (i) => {
   counterp++;
   const q = data[i];
   let a = q.answers;
+  //cambiar de posicion todoas las respuestas randon en cada pregunta de forma aleatoria
   a = a.sort((a, b) => Math.floor(Math.random() * 3) - 1);
   //mirar
   const htmlanswersarray = a.map(
     (currentA) =>
       `<p class=answer><button class=evaluar>X</button><span>${currentA}</span></p>`
   );
-
+  //prueva de codigos de diferentes llamadas al click desde html o desde cresacion de html con llamada integrada no funcina.
   // const htmlanswersarray = a.map(
   //    (currentA) => document.createElement(`<p class=ans><button id=evalu onclick="evaluateAnswer('${currentA}', this)">X</button> <span>${currentA}</span></p>)
   //     `
@@ -58,22 +66,10 @@ const printhtmlpregunta = (i) => {
   let Htmlrespuestascode = `<p>${htmlanswers}</p>`;
   document.querySelector("div.respuestas").innerHTML = Htmlrespuestascode;
 };
-//tiempo para respuesta
-time = 20;
-let cretime = `<p class=time></p>`;
-document.querySelector(".divtime").innerHTML = cretime;
-document.querySelector(".time").innerHTML = time;
-clearInterval(timeinterval);
-timeinterval = setInterval(() => {
-  time--;
-  if (time == 0) {
-    alert("Se acabo el tiempo");
-    clearInterval(timeinterval);
-  } else {
-    document.querySelector(".time").innerHTML = time;
-  }
-}, 1000);
-//evaluador de respuestas y comprobacion--------------------------
+
+///contador descuento de tiempo con alerta de fin de tiempo--- subida con contador negativo y siguiente pregunta
+
+//evaluador de respuestas y comprobacion--------------------------mirar no ok
 
 const evaluarans = (answers) => {
   const padrepre = document.querySelectorAll("p.answer");
@@ -84,9 +80,12 @@ const evaluarans = (answers) => {
   if ((answers = rightanswers)) {
     const text = end.querySelector(".aciertos");
     text.textContent = "Acertaste";
+    //fallo de in not difine
     padrepre.classList.add("right");
     rightans++;
     document.querySelector.add(".verdad").innerHTML = rightans;
+    const audioV = new Audio("/Sonido/Correcto.mp3");
+    audioV.play();
   } else answers !== rightanswers;
   const text = end.querySelector(".aciertos");
   text.textContent = "Fallaste";
@@ -94,6 +93,8 @@ const evaluarans = (answers) => {
   padrepre.classList.add("wrong");
   wrongans++;
   document.querySelector.add(".mentira").innerHTML = wrongans;
+  const audioF = new Audio("/Sonido/incorrecto.mp3");
+  audioF.play();
 };
 
 printhtmlpregunta(counterp);
@@ -118,7 +119,7 @@ const saveuser = () => {
   const arrayjson = JSON.stringify(usuario.arraynunber);
   const acietojson = JSON.stringify(usuario.acietojson);
   const fallojson = JSON.stringify(usuario.fallojson);
-  // Guardamos las tareas en el local storage.
+  // Guardamos las usuario en el local storage.
   window.localStorage.setItem(
     "Player",
     userjson,
@@ -145,7 +146,7 @@ const usuario = {
 };
 
 const deleteAlluser = () => {
-  // Vaciamos el array de tareas.
+  // Vaciamos el array de local storage para el user.
   usuario.user = [];
 
   // Guardamos los cambios en el localStorage.
@@ -178,11 +179,13 @@ const botoneva = evaluarb[0].addEventListener("click", () => {});
 
 for (const evaluar of evaluarb) {
   evaluar.addEventListener("click", () => {
-    evaluarans();
+    //parametro evaluarans me rompre en codigo dentro de funcion -mirar no ok
+    //evaluarans();
     setTimeout(() => {
       hideAllPanel();
       showEnd();
     }, 3000);
+    clearInterval(timeinterval);
   });
 }
 
@@ -211,6 +214,16 @@ function showEnd() {
 const nextp = document.querySelector(".nextpre");
 nextp.addEventListener("click", () => {
   printhtmlpregunta(counterp);
+
+  timeinterval = setInterval(() => {
+    time--;
+    if (time == 0) {
+      alert("Se acabo el tiempo");
+      clearInterval(timeinterval);
+    } else {
+      document.querySelector(".time").innerHTML = time;
+    }
+  }, 1000);
 });
 function showerror() {
   showPanel(error);
@@ -227,10 +240,11 @@ function showCenter() {
   const text = center.querySelector("p");
   text.textContent = "Este Es Tu Desafio";
   const centerButton = center.querySelector("button");
-  // centerButton.addEventListener("click", () => {
-  //   hideAllPanel();
-  //   showEnd();
-  // });
+  //llamada al click del boton centrar de las pregunta y no del panel con un retador de 3 segundos-mirar
+  centerButton.addEventListener("click", () => {
+    hideAllPanel();
+    showEnd();
+  });
   setTimeout(() => {
     centerButton;
   }, 3000);
@@ -243,6 +257,22 @@ function main() {
   startButton.addEventListener("click", () => {
     hideAllPanel();
     showCenter();
+    ///contador descuento de tiempo con alerta de fin de tiempo subida con contador negativo y siguiente pregunta
+
+    timeinterval = setInterval(() => {
+      time--;
+      if (time == 0) {
+        alert("Se acabo el tiempo");
+        clearInterval(timeinterval);
+        wrongans++;
+        counterp++;
+        // colocar un fin de tiempo pregunta
+      } else {
+        document.querySelector(".time").innerHTML = time;
+      }
+    }, 1000);
+
+    //llamada al contador pregunta para primera pregunta que no inicien contador en primera portal- mirar
   });
 }
 
