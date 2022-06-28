@@ -78,20 +78,40 @@ const printhtmlpregunta = (i) => {
       document.querySelector(".time").innerHTML = time;
     }
   }, 1000);
+
+  // botones de respues procedentes de preguntahtml para verificar respuesta mirara no ok
+  const evaluarbtn = center.querySelectorAll(".evaluar");
+  evaluarbtn[0].addEventListener("click", () => {
+    evaluarans();
+    setTimeout(() => {
+      hideAllPanel();
+      showEnd();
+    }, 3000);
+  });
+  for (const btn of evaluarbtn) {
+    btn.addEventListener("click", () => {
+      evaluarans();
+      setTimeout(() => {
+        hideAllPanel();
+        showEnd();
+      }, 3000);
+    });
+  }
 };
 
 //evaluador de respuestas y comprobacion-------------------------------------------------------------------------------------------------------------------------------------------------------------mirar no ok
 
 const evaluarans = (answers) => {
+  // ulElement.addEventListener("click", (event) => {
+  //   const target = event.target;
   const padrepre = document.querySelectorAll("p.answer");
-  document
-    .querySelectorAll(".answer")
-    .forEach((a) => a.classList.remove("right", "wrong"));
+  padrepre.forEach((a) => a.classList.remove("right", "wrong"));
 
   if ((answers = rightanswers)) {
     const text = end.querySelector(".aciertos");
     text.textContent = "Acertaste";
     //fallo de in not difine padrepre
+
     padrepre.classList.add("right");
     rightans++;
     document.querySelector.add(".verdad").innerHTML = rightans;
@@ -169,10 +189,10 @@ const deleteAlluser = () => {
 //  *
 //  * De lo contrario, si localStorageTasks está vacío,  será igual
 //  * a un array vacío.
-const localStorageuser = window.localStorage.getItem("Player");
-const respartida = {
-  user: localStorageuser ? JSON.parse(localStorageuser) : [],
-};
+// const localStorageuser = window.localStorage.getItem("Player");
+// const respartida = {
+//   user: localStorageuser ? JSON.parse(localStorageuser) : [],
+// };
 
 //------------------------------------------------
 
@@ -185,20 +205,6 @@ const error = document.querySelector(".error");
 const evaluarb = center.querySelectorAll(".evaluar");
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------mirar no ok
 
-//botones de respues procedentes de preguntahtml para verificar respuesta mirara no ok
-
-// const botoneva = evaluarb.addEventListener("click", () => {});
-
-for (const evaluar of evaluarb) {
-  evaluar.addEventListener("click", () => {
-    //parametro evaluarans me rompre en codigo dentro de funcion -mirar no ok
-    //evaluarans();
-    setTimeout(() => {
-      hideAllPanel();
-      showEnd();
-    }, 3000);
-  });
-}
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // remover class hidden
 function showPanel(panel) {
@@ -228,7 +234,7 @@ const nextp = document.querySelector(".nextpre");
 nextp.addEventListener("click", () => {
   printhtmlpregunta(counterp);
   hideAllPanel();
-  showCenter();
+  showPanel(center);
 });
 
 //funcion de muestra de error en otro postal si no hay error en base de datos o json
@@ -246,16 +252,16 @@ function showCenter() {
   showPanel(center);
   const text = center.querySelector("p");
   text.textContent = "Este Es Tu Desafio";
-  const centerButton = center.querySelector("button");
-  //pruaba inicial de paso de portal respuestas a final
-  // llamada al click del boton centrar de las pregunta y no del panel con un retador de 3 segundos-mirar
-  center.addEventListener("click", () => {
-    hideAllPanel();
-    showEnd();
-  });
-  setTimeout(() => {
-    centerButton;
-  }, 3000);
+  //   const centerButton = center.querySelector("button");
+  //   //pruaba inicial de paso de portal respuestas a final
+  //   // llamada al click del boton centrar de las pregunta y no del panel con un retador de 3 segundos-mirar
+  //   center.addEventListener("click", () => {
+  //     hideAllPanel();
+  //     showEnd();
+  //   });
+  //   setTimeout(() => {
+  //     centerButton;
+  //   }, 3000);
 }
 //boton de inico OK
 function main() {
