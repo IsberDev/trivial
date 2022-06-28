@@ -44,6 +44,10 @@ section.panel {
 section.panel.hidden {
   display: none;
 }
+.aciertos {
+  border: 2px solid black;
+  font-size: 32px;
+}
 
 footer p {
   text-align: center;
@@ -57,14 +61,15 @@ footer p {
 }
 .verdad {
   border: 2px solid black;
-  background: palegreen;
   font-size: 24px;
+  background: palegreen;
 }
 .mentira {
   border: 2px solid black;
-  background: salmon;
   font-size: 24px;
+  background: salmon;
 }
+
 .time {
   font-size: 32px;
   color: red;

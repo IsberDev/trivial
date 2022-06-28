@@ -47,8 +47,7 @@ const printhtmlpregunta = (i) => {
   a = a.sort((a, b) => Math.floor(Math.random() * 3) - 1);
   //creacion de nodo de respuesta por map ok
   const htmlanswersarray = a.map(
-    (currentA) =>
-      `<p class=answer><button class=evaluar>X</button><span>${currentA}</span></p>`
+    (currentA) => `<p class=answer><span>${currentA}</span></p>`
   );
   // formato para quitar , separatoria
   const htmlanswers = htmlanswersarray.join(" ");
@@ -66,67 +65,168 @@ const printhtmlpregunta = (i) => {
   timeinterval = setInterval(() => {
     time--;
     if (time == 0) {
+      const audioF = new Audio("/Sonido/incorrecto.mp3");
+      audioF.play();
       alert("Se acabo el tiempo");
       clearInterval(timeinterval);
-      //escritura de contador fallo
+      const text = end.querySelector(".aciertos");
+      text.textContent = "Fallaste";
+      //subida de fallo por fin de tiempo
       wrongans++;
+
       //cambio de paneles
       hideAllPanel();
       showEnd();
       // colocar un fin de tiempo pregunta
+      document.querySelector(".mentira").innerHTML = wrongans;
     } else {
       document.querySelector(".time").innerHTML = time;
     }
   }, 1000);
 
-  // botones de respues procedentes de preguntahtml para verificar respuesta mirara no ok
-  const evaluarbtn = center.querySelectorAll(".evaluar");
-  evaluarbtn[0].addEventListener("click", () => {
-    evaluarans();
+  const padreres = document.querySelector("div.respuestas");
+  padreres.addEventListener("click", (event) => {
+    clearInterval(timeinterval);
+    const padrepre = document.querySelectorAll("p.answer");
+    padrepre.forEach((a) => a.classList.remove("right", "wrong"));
+
+    const target = event.target;
+    if (target.matches("p span")) {
+      if (target.textContent === rightanswers) {
+        const text = end.querySelector(".aciertos");
+        text.textContent = "Acertaste";
+        target.classList.add("right");
+        rightans++;
+        document.querySelector(".verdad").innerHTML = rightans;
+        const audioV = new Audio("/Sonido/Correcto.mp3");
+        audioV.play();
+      } else {
+        const text = end.querySelector(".aciertos");
+        text.textContent = "Fallaste";
+        target.classList.add("wrong");
+        wrongans++;
+        document.querySelector(".mentira").innerHTML = wrongans;
+        const audioF = new Audio("/Sonido/incorrecto.mp3");
+        audioF.play();
+      }
+    }
     setTimeout(() => {
       hideAllPanel();
       showEnd();
-    }, 3000);
+    }, 2000);
   });
-  for (const btn of evaluarbtn) {
-    btn.addEventListener("click", () => {
-      evaluarans();
-      setTimeout(() => {
-        hideAllPanel();
-        showEnd();
-      }, 3000);
-    });
-  }
 };
+
+// botones de respuesta procedentes de preguntahtml para verificar respuesta ---------------------------------------
+//los metodos addeventlistener , classlist.add y demas son utilizables para un elemento si le llega un
+// objetolist o lista de objeto nos dara con no definido o is not function
+// para este arreglo se realiza un add para el primer boton y se realiza un for para darle la misma funcionalidad a los demas botones.
+//   const evaluarbtn = center.querySelectorAll("p.answer");
+//   evaluarbtn[0].addEventListener("click", (e) => {
+//     clearInterval(timeinterval);
+//     const target = e.target;
+//     const padrepre = document.querySelectorAll("p.answer");
+//     padrepre.forEach((a) => a.classList.remove("right", "wrong"));
+
+//     if ((target.answers = rightanswers)) {
+//       const text = end.querySelector(".aciertos");
+//       text.textContent = "Acertaste";
+
+//       // //fallo de in not difine padrepre
+//       target.classList.add("right");
+
+//       rightans++;
+//       document.querySelector.add(".verdad").innerHTML = rightans;
+//       const audioV = new Audio("/Sonido/Correcto.mp3");
+//       audioV.play();
+//     } else answers !== rightanswers;
+//     const text = end.querySelector(".aciertos");
+//     text.textContent = "Fallaste";
+
+//     // //fallo de in not difine padrepre
+//     target.classList.add("wrong");
+
+//     wrongans++;
+//     document.querySelector.add(".mentira").innerHTML = wrongans;
+//     const audioF = new Audio("/Sonido/incorrecto.mp3");
+//     audioF.play();
+
+//     setTimeout(() => {
+//       hideAllPanel();
+//       showEnd();
+//     }, 3000);
+//   });
+//   for (const btn of evaluarbtn) {
+//     btn.addEventListener("click", (e) => {
+//       const target = e.target;
+//       clearInterval(timeinterval);
+//       const padrepre = document.querySelectorAll("p.answer");
+//       padrepre.forEach((a) => a.classList.remove("right", "wrong"));
+
+//       if ((target.answers = rightanswers)) {
+//         const text = end.querySelector(".aciertos");
+//         text.textContent = "Acertaste";
+
+//         //fallo de in not difine padrepre
+//         target.classList.add("right");
+
+//         rightans++;
+//         document.querySelector.add(".verdad").innerHTML = rightans;
+//         const audioV = new Audio("/Sonido/Correcto.mp3");
+//         audioV.play();
+//       } else answers !== rightanswers;
+//       const text = end.querySelector(".aciertos");
+//       text.textContent = "Fallaste";
+
+//       //fallo de in not difine padrepre
+//       target.classList.add("wrong");
+
+//       wrongans++;
+//       document.classList.add(".mentira").innerHTML = wrongans;
+//       const audioF = new Audio("/Sonido/incorrecto.mp3");
+//       audioF.play();
+//       evaluarans(e.target);
+//       setTimeout(() => {
+//         hideAllPanel();
+//         showEnd();
+//       }, 3000);
+//     });
+//   }
+// };
 
 //evaluador de respuestas y comprobacion-------------------------------------------------------------------------------------------------------------------------------------------------------------mirar no ok
 
-const evaluarans = (answers) => {
-  // ulElement.addEventListener("click", (event) => {
-  //   const target = event.target;
-  const padrepre = document.querySelectorAll("p.answer");
-  padrepre.forEach((a) => a.classList.remove("right", "wrong"));
+// const evaluarans = (answers, e) => {
+//   // ulElement.addEventListener("click", (event) => {
+//   //   const target = event.target;
+//   // const padrep = obj.target.parentNode;
 
-  if ((answers = rightanswers)) {
-    const text = end.querySelector(".aciertos");
-    text.textContent = "Acertaste";
-    //fallo de in not difine padrepre
+//   const padrepre = document.querySelectorAll("p.answer");
+//   padrepre.forEach((a) => a.classList.remove("right", "wrong"));
 
-    padrepre.classList.add("right");
-    rightans++;
-    document.querySelector.add(".verdad").innerHTML = rightans;
-    const audioV = new Audio("/Sonido/Correcto.mp3");
-    audioV.play();
-  } else answers !== rightanswers;
-  const text = end.querySelector(".aciertos");
-  text.textContent = "Fallaste";
+//   if ((answers = rightanswers)) {
+//     const text = end.querySelector(".aciertos");
+//     text.textContent = "Acertaste";
 
-  padrepre.classList.add("wrong");
-  wrongans++;
-  document.querySelector.add(".mentira").innerHTML = wrongans;
-  const audioF = new Audio("/Sonido/incorrecto.mp3");
-  audioF.play();
-};
+//     //fallo de in not difine padrepre
+//     padrepre[0].classList.add("right");
+
+//     rightans++;
+//     document.querySelector.add(".verdad").innerHTML = rightans;
+//     const audioV = new Audio("/Sonido/Correcto.mp3");
+//     audioV.play();
+//   } else answers !== rightanswers;
+//   const text = end.querySelector(".aciertos");
+//   text.textContent = "Fallaste";
+
+//   //fallo de in not difine padrepre
+//   padrepre.classList.add("wrong");
+
+//   wrongans++;
+//   document.querySelector.add(".mentira").innerHTML = wrongans;
+//   const audioF = new Audio("/Sonido/incorrecto.mp3");
+//   audioF.play();
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------form para cojer datos y escribirlos en la base de datos si definir -- solo guardado nombre
 
