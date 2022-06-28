@@ -1,0 +1,120 @@
+button{
+    width:100px;
+    height: 100px;
+}
+
+#answer{
+    display: none;
+}
+
+/*
+/* working!!! */
+
+
+
+h1 {border-style: dotted;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+}
+
+
+
+p#cinefilo {
+   color: solid black;
+   margin: 5vh;
+   margin-bottom: 5vh;
+    margin-left: 80vh;
+   height: 100px;
+   font-size: x-large;
+   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+   max-width: 1000px;
+   top: 10rem;
+}
+
+
+
+#titulo {
+    margin-left: 90vh;
+    margin-top: 10px;
+    font-weight: bold;
+    height: 30px;
+    width: 300px;
+   
+
+
+
+
+border-color: black;
+    align-items: center;
+    /*position: absolute;*/
+    top: 23rem;
+    
+}
+
+
+
+#titulo_uno{
+    color:black;
+    margin-left: 90vh;
+    width: auto;
+    /*height: 100vh;
+    position: absolute;*/
+    top: 20rem;
+    font-weight: bold;
+    font-size: larger;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+*/
+
+
+
+
+#User{
+   /* margin-left: 90vh;*/
+    width: 25rem;
+    height: 2rem;
+    position: absolute;
+    top: 22rem;
+    font-weight: bold;
+    font-size: larger;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+legend#atrevete {
+    color:black;
+    margin: 1vh;
+    padding-left: 90vh;
+    position: absolute;
+    top:28rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#contenedor1{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+
+
+#atrevete {
+    margin-left: 40vh;
+    color: paleturquoise;
+    position: absolute
+    margin-top: 43rem;
+}
+
+
+#atrevete2{
+margin-left: 92vh;
+}
+
+
+footer > p {
+    position: absolute;
+    top: 58rem;
+    text-align: center;
+   /* margin-left: 80vh;*/
+}
+

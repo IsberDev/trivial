@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PANTALLAS</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+   <h1>CINEMA QUIZ</h1>
+    <section class="panel start hidden" id="contenedor1">
+
+      <p id="cinefilo">¿Eres todo un cinéfilo?, !Demuéstralo!</p>      
+          <form name="User">
+            <label for="User" id="titulo_uno">Nombre</label>
+            <input type="text" autofocus  />
+          <header id="atrevete">Atrévete con nuestro juego de preguntas de cine</header>
+          <p id="atrevete2">¡A por ellos!</p>   
+          <button type="submit" id="atrevete3">Comienza tu partida  
+              </button>
+          </form> 
+            </section>
+            <footer>
+              <p>Diseñado por Ismael García Bermejo y José María López Fernández</p>
+          </footer> 
+    <section class="central panel hidden">
+      <p></p>
+      <p class="juego">JUEGO</p>
+      <div class="pregresp"></div>
+          <div class="pregunta" id="question">1. ¿En que año se estrenó Cuidadano Kane?<br />
+          </div>
+          <div class="answer">
+            <input type="radio" name="preg1" value="1" id="optt1" /> 1939<br />
+            <input type="radio" name="preg1" value="2" id="optt2" /> 2008<br />
+            <input type="radio" name="preg1" value="3" id="optt3" /> 1941<br />
+              <input type="radio" name="preg1" value="4" id="optt4" /> 1962<br />
+              <button inputmode="submit" id="button1">Envía tu respuesta</button>
+          </div>
+    </section>
+    <header></header>
+    <section class="panel end hidden">
+      <p>RESULTADO FINAL</p>
+    <span style="border-image: initial; border: 1px solid blue;">CORRECTO O INCORRRECTO</span>
+
+  <button>SEGUIR MAS ADELANTE</button><button>SIGUEINTE PREGUNTA</button>
+    </section>
+<script src ="./testing.js"></script>
+    
+  </body>
+</html>

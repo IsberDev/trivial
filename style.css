@@ -4,6 +4,17 @@
     box-sizing: border-box;
 }
 
+h1 {border-style: dotted;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+}
+
+
+
+
+
+
 body{
     min-height: 100vh;
     background-color: lightgray;
@@ -14,22 +25,18 @@ section.panel {
     border: 4 px solid white;
     display: grid;
     place-content: center;
-    background-image: url(imagenes/pngtree-film-and-television-festival-retro-wind-camera-poster-image_218869.jpg);
+    background-image: url(pngtree-film-and-television-festival-retro-wind-camera-poster-image_218869.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-h1 {border-style: dotted;
+
+.juego{
+    position: absolute;
     text-align: center;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-weight: bold;
+    top: 60rem;
 }
 
-
-
-p#cinefilo {
-   color: blueviolet;
-}
 
 section.panel.start {
     background-color: lightgrey;
