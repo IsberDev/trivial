@@ -25,7 +25,9 @@ mainjson();
 //decraraciones
 
 let counterp = 0;
-let rightanswers = data[counterp].correct;
+
+// const rightanswers = data[counterp].correct;
+// console.log(rightanswers);
 let rightans = 0;
 let wrongans = 0;
 let time = 20;
@@ -40,7 +42,8 @@ printime;
 
 // pintura en el html de respuestas y preguntas -ok
 const printhtmlpregunta = (i) => {
-  counterp++;
+  // counterp++;
+  console.log("Pregunta:", counterp);
   const q = data[i];
   let a = q.answers;
   //cambiar de posicion todoas las respuestas randon en cada pregunta de forma aleatoria
@@ -73,7 +76,7 @@ const printhtmlpregunta = (i) => {
       text.textContent = "Fallaste";
       //subida de fallo por fin de tiempo
       wrongans++;
-
+      console.log("fallo tiempo:", wrongans);
       //cambio de paneles
       hideAllPanel();
       showEnd();
@@ -83,39 +86,45 @@ const printhtmlpregunta = (i) => {
       document.querySelector(".time").innerHTML = time;
     }
   }, 1000);
-
-  const padreres = document.querySelector("div.respuestas");
-  padreres.addEventListener("click", (event) => {
-    clearInterval(timeinterval);
-    const padrepre = document.querySelectorAll("p.answer");
-    padrepre.forEach((a) => a.classList.remove("right", "wrong"));
-
-    const target = event.target;
-    if (target.matches("p span")) {
-      if (target.textContent === rightanswers) {
-        const text = end.querySelector(".aciertos");
-        text.textContent = "Acertaste";
-        target.classList.add("right");
-        rightans++;
-        document.querySelector(".verdad").innerHTML = rightans;
-        const audioV = new Audio("/Sonido/Correcto.mp3");
-        audioV.play();
-      } else {
-        const text = end.querySelector(".aciertos");
-        text.textContent = "Fallaste";
-        target.classList.add("wrong");
-        wrongans++;
-        document.querySelector(".mentira").innerHTML = wrongans;
-        const audioF = new Audio("/Sonido/incorrecto.mp3");
-        audioF.play();
-      }
-    }
-    setTimeout(() => {
-      hideAllPanel();
-      showEnd();
-    }, 2000);
-  });
 };
+const padreres = document.querySelector("div.respuestas");
+padreres.addEventListener("click", (event) => {
+  clearInterval(timeinterval);
+  const padrepre = document.querySelectorAll("p.answer");
+  padrepre.forEach((a) => a.classList.remove("right", "wrong"));
+  // console.log("antes de counterp:", data[counterp].correct);
+  const target = event.target;
+
+  // if (target.matches("p span")) {
+  if (target.textContent === data[counterp].correct) {
+    // console.log(rightanswers);
+    // console.log("verdad:", data[counterp].correct);
+    const text = end.querySelector(".aciertos");
+    text.textContent = "Acertaste";
+    target.classList.add("right");
+    rightans++;
+    // console.log("rigt:", rightans);
+    document.querySelector(".verdad").innerHTML = rightans;
+    const audioV = new Audio("/Sonido/Correcto.mp3");
+    audioV.play();
+  } else {
+    // console.log(rightanswers);
+    // console.log("fallo", data[counterp].correct);
+    const text = end.querySelector(".aciertos");
+    text.textContent = "Fallaste";
+    target.classList.add("wrong");
+    wrongans++;
+    // console.log("Fallo:", wrongans);
+    document.querySelector(".mentira").innerHTML = wrongans;
+    const audioF = new Audio("/Sonido/incorrecto.mp3");
+    audioF.play();
+  }
+  // }
+  setTimeout(() => {
+    hideAllPanel();
+    showEnd();
+  }, 2000);
+});
 
 // botones de respuesta procedentes de preguntahtml para verificar respuesta ---------------------------------------
 //los metodos addeventlistener , classlist.add y demas son utilizables para un elemento si le llega un
@@ -232,7 +241,7 @@ const printhtmlpregunta = (i) => {
 
 const form = document.forms.usuario;
 
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", () => {
   // Prevenimos que se envie el formulario al pulsar el botón.
   e.preventDefault();
   const player = form.elements.User;
@@ -332,6 +341,7 @@ function showEnd() {
 //boton de siguiente pregunta que da paso desde la ultima pantalla
 const nextp = document.querySelector(".nextpre");
 nextp.addEventListener("click", () => {
+  counterp++;
   printhtmlpregunta(counterp);
   hideAllPanel();
   showPanel(center);
