@@ -1,0 +1,84 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  .error {
+    background: gray;
+  }
+  
+  body {
+    min-height: 100vh;
+    background-color: lightgray;
+  }
+  
+  article {
+    text-align: center;
+    background-image: url(/img/fondo-trivial.jpg);
+    min-height: 100vh;
+    /* border: 4 px solid white; */
+    display: grid;
+    place-content: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  h1 {
+    border-style: dotted;
+    text-align: center;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-weight: bold;
+  }
+  
+  p#cinefilo {
+    color: blueviolet;
+  }
+  section.panel {
+    background-color: lightgrey;
+  
+    border-radius: 3px;
+    border: 3px solid black;
+  }
+  
+  section.panel.hidden {
+    display: none;
+  }
+  .aciertos {
+    border: 2px solid black;
+    font-size: 32px;
+  }
+  
+  footer p {
+    text-align: center;
+    text-decoration: dashed;
+  }
+  .right {
+    background: palegreen;
+  }
+  .wrong {
+    background: salmon;
+  }
+  .verdad {
+    border: 2px solid black;
+    font-size: 24px;
+    background: palegreen;
+  }
+  .mentira {
+    border: 2px solid black;
+    font-size: 24px;
+    background: salmon;
+  }
+  
+  .time {
+    font-size: 32px;
+    color: red;
+  }
+  @media (max-width: 492px) and (orientation: landscape) {
+  }
+  Footer
+  © 2022 GitHub, Inc.
+  Footer navigation
+  Terms
+  Privacy
+  

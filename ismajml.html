@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>Cinema Quiz</title>
+    <Link rel="stylesheet" href="./CSS/trivial.css"></Link>
+</head>
+<body>
+    <header><h1>CINEMA QUIZ</h1></header>
+    <article>
+    <section class="panel start hidden">
+      <p id="cinefilo">¿Eres todo un cinéfilo?, !Demuéstralo!</p>
+      <form name="usuario">
+          <label for="User">Nombre</label>
+          <input type="text" name="user" id="user" autofocus required />
+          <legend>Atrévete con nuestro juego de 50 preguntas de cine</legend></h2> 
+      
+          <p>¡A por ellos!
+          <button type="submit">Comienza tu partida</p>
+        </form>
+
+
+    </section>
+    <section class="panel center hidden">
+      <p></p>
+      <P>Empieza El Juego</P>
+      <div class="pregresp">
+            <div class="divtime"></div>
+          <div class="pregunta"><br />
+          </div>
+          <div class="respuestas">
+            <input type="radio" name="preg1" value="1" /> 1939<br /> 
+            <input type="radio" name="preg1" value="2" /> 2008<br />
+            <input type="radio" name="pre g1" value="3" /> 1941<br />
+            <input type="radio" name="preg1" value="4" /> 1962<br />
+            <button inputmode="submit">Envía tu respuesta</button>
+
+    </section>
+    <section class="panel end hidden">
+        
+      <p>RESULTADO FINAL</p>
+    <span class= aciertos >xxxxxxxxxxxxxxx</span><br>
+
+    <button class="guardar">SEGUIR MAS ADELANTE</button><button class="nextpre">SIGUIENTE PREGUNTA</button>
+    <p><span class="verdad">0</span><span class="mentira">0</span></p>
+
+    </section>
+    <section class="panel error hidden">
+        <p ></p>
+        <Button> Volver a inicio</Button>
+    </section>
+    </article>
+    <footer>
+        <p>Diseñado por Ismael García Bermejo y Jose Maria López Fernández</p>
+    </footer>
+    <script type="module" src="./JS/trivial.js"></script>
+</body>
+</html>
+Footer

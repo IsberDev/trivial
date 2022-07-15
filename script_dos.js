@@ -47,20 +47,23 @@ function renderQuestion(questionToRender) {
 
   ulElement.addEventListener("click", (event) => {
     const target = event.target;
-    if (target.matches("li")) {
-      if (target.textContent === questionToRender.correct) {
-        alert("Acertaste");
-        correctCount++;
-      } else {
-        alert("Fallaste!");
-      }
-      console.log(correctCount);
-      if (++preguntaNum < preguntas.length) {
-        renderQuestion(preguntas[preguntaNum]);
-      } else {
-        // Pasar al panel final con los resultados
-      }
+    // if (target.matches("li")) {
+    if (target.textContent === questionToRender.correct) {
+      alert("Acertaste");
+      correctCount++;
+      console.log("acertaste", questionToRender.correct);
+      //        console.log(correctCount);
+    } else {
+      alert("Fallaste!");
+      console.log("ERROR", questionToRender.correct); //
     }
+    console.log(correctCount);
+    if (++preguntaNum < preguntas.length) {
+      renderQuestion(preguntas[preguntaNum]);
+    } else {
+      // Pasar al panel final con los resultados
+    }
+    // }
   });
 }
 
